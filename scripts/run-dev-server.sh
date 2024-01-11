@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
-# scripts/run-integration.sh
+# checks if script is s
+function check_command() {
+    "$@"
+    status=$?
+    if [ $status -ne 0 ]; then
+        exit $status
+    fi
+    return $status
+}
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
-source $DIR/setenv.sh
+
+
+# make sure database is ready 
+# exits script if database times out
 docker-compose up -d
-echo '🟡 - Waiting for database to be ready...'
-$DIR/wait-for-it.sh "${DATABASE_URL}" -- echo '🟢 - Database is ready!'
-npx prisma db push
+check_command npx prisma db push
+
 ./node_modules/.bin/nodemon ./src/index.ts
