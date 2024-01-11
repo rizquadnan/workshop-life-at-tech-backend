@@ -5,23 +5,23 @@
 
 # Trainer App
 ## Dashboard
-1. GET len(customers)  // by trainer id
+1. GET len(customers)  // by trainer id. better get len of contracts
 2. GET sum(contracts -> amountOfExercise) // by trainer id
-3. GET len(customers) // by trainer id AND by contract endTime
+3. GET len(customers) // by trainer id AND by contract endTime get len of contracs
 
 ## Train
-1. GET customers // by trainer id
+1. GET customers // by trainer id. get contracts for a trainer id to get customers id. then get customer for each customer id 
 2. POST exercises
-3. GET exercises // by trainer id AND by status
-4. PUT exercises -> status // by exercise id
+3. GET exercises // by trainer id AND by status.
+4. PATCH exercises -> status // by exercise id
 
 ## Customer
-1. GET customers // by trainer id
+1. GET customers // by trainer id. get contracts for a trainer id to get customers id. then get customer for each customer id
 2. POST contracts
 
 ## Profile
-1. GET trainers // by trainer id
-2. PUT trainers // by trainer id 
+1. GET trainers // by trainer id. get user
+2. PATCH trainers // by trainer id. patch user
 3. PUT trainers -> password // by trainer id
 
 # Customer App

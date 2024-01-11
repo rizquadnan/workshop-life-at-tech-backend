@@ -3,7 +3,9 @@ import morgan from "morgan";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import config from "config";
+
 import AppError from "./v1/utils/appError";
+import v1Router from "./v1/routes";
 
 const app = express();
 
@@ -24,6 +26,9 @@ app.use(
 
 // 4 Logger
 if (config.get("nodeEnv") === "development") app.use(morgan("dev"));
+
+// ROUTES
+app.use("/api/v1", v1Router);
 
 // HEALTH CHECK
 app.get("/api/health_check", (_, res: Response) => {
