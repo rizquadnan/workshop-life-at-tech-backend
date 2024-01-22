@@ -22,7 +22,7 @@ model Trainer {
   email     String   @unique
   password  String
   name      String
-  whatsapp  Int
+  whatsapp  String
   rStatus   RecordStatus
   contracts Contract[]
 }
@@ -34,7 +34,7 @@ model Customer {
   email     String   @unique
   password  String
   name      String
-  whatsapp  Int
+  whatsapp  String
   rStatus   RecordStatus
   contracts Contract[]
 }

@@ -1,16 +1,21 @@
 import { Router } from "express";
 import { generateJson } from "../utils/genJson";
+import { validate } from "../middlewares/validate";
+import { registerUserSchema } from "../schemas/user.schema";
+import { registerUserHandler } from "../controllers/auth.controller";
 
 const router = Router();
 
-router.post("/register", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "register in development",
-    })
-  );
-});
+  // 1. validate req body
+  // 2. hash password
+  // 3. call service to save user
+  // 4. send response
+
+router.post(
+  "/register/:userType((trainer|customer))",
+  validate(registerUserSchema),
+  registerUserHandler
+);
 
 router.post("/login", (req, res) => {
   res.status(200).json(
