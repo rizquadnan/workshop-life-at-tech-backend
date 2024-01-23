@@ -6,21 +6,23 @@ const isIndonesianPhoneNumber = (input: string) => {
   return regex.test(input);
 };
 
-export const responseExcludedFields = ["password"];
+const passwordValidations = string({
+  required_error: "Password is required",
+})
+  .min(8, "Password must be more than 8 characters")
+  .max(32, "Password must be less than 32 characters");
+
+const emailValidations = string({
+  required_error: "Email address is required",
+}).email("Invalid email address");
 
 export const registerUserSchema = object({
   body: object({
     name: string({
       required_error: "Name is required",
     }),
-    email: string({
-      required_error: "Email address is required",
-    }).email("Invalid email address"),
-    password: string({
-      required_error: "Password is required",
-    })
-      .min(8, "Password must be more than 8 characters")
-      .max(32, "Password must be less than 32 characters"),
+    email: emailValidations,
+    password: passwordValidations,
     passwordConfirm: string({
       required_error: "Please confirm your password",
     }),
@@ -35,4 +37,15 @@ export const registerUserSchema = object({
 
 export type RegisterUserInput = TypeOf<typeof registerUserSchema>["body"];
 
-export type RegisterUserRouteParam = { userType: "trainer" | "customer" };
+export type AuthRouteParam = { userType: "trainer" | "customer" };
+
+export const authResponseExcludedFields = ["password"];
+
+export const loginUserSchema = object({
+  body: object({
+    email: emailValidations,
+    password: passwordValidations,
+  }),
+});
+
+export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];

@@ -1,18 +1,39 @@
-import { NextFunction, Request, Response } from "express";
+import { CookieOptions, NextFunction, Request, Response } from "express";
 import { generateJson } from "../utils/genJson";
 import bcrypt from "bcryptjs";
 import { Prisma } from "@prisma/client";
 import {
+  LoginUserInput,
   RegisterUserInput,
-  RegisterUserRouteParam,
-  responseExcludedFields,
+  AuthRouteParam,
+  authResponseExcludedFields,
 } from "../schemas/user.schema";
-import { createTrainer } from "../services/trainer.service";
+import { createTrainer, findUniqueTrainer } from "../services/trainer.service";
 import { createCustomer } from "../services/customer.service";
 import { omit } from "lodash";
+import AppError from "../utils/appError";
+import { signTokens } from "../utils/jwt";
+import config from "config";
+
+const cookiesOptions: CookieOptions = {
+  httpOnly: true,
+  sameSite: "lax",
+};
+
+if (process.env.NODE_ENV === "production") cookiesOptions.secure = true;
+
+const accessTokenCookieOptions: CookieOptions = {
+  ...cookiesOptions,
+  maxAge: config.get<number>("accessTokenExpiresIn") * 60 * 1000, // config number * 1 minute
+};
+
+const refreshTokenCookieOptions: CookieOptions = {
+  ...cookiesOptions,
+  maxAge: config.get<number>("refreshTokenExpiresIn") * 60 * 1000, // config number * 1 minute
+};
 
 export const registerUserHandler = async (
-  req: Request<RegisterUserRouteParam, {}, RegisterUserInput>,
+  req: Request<AuthRouteParam, {}, RegisterUserInput>,
   res: Response,
   next: NextFunction
 ) => {
@@ -32,14 +53,12 @@ export const registerUserHandler = async (
       ? createTrainer(payload)
       : createCustomer(payload));
 
-    res
-      .status(201)
-      .json(
-        generateJson({
-          status: "success",
-          data: omit(user, responseExcludedFields),
-        })
-      );
+    return res.status(201).json(
+      generateJson({
+        status: "success",
+        data: omit(user, authResponseExcludedFields),
+      })
+    );
   } catch (err: any) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
@@ -50,5 +69,45 @@ export const registerUserHandler = async (
       }
     }
     next(err);
+  }
+};
+
+export const loginUserHandler = async (
+  req: Request<AuthRouteParam, {}, LoginUserInput>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, password } = req.body;
+    const userType = req.params.userType;
+
+    const user = await (userType === "trainer"
+      ? findUniqueTrainer(email.toLowerCase())
+      : null);
+
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return next(new AppError(400, "Invalid email or password"));
+    }
+
+    const { access_token, refresh_token } = await signTokens(user.id);
+
+    res.cookie("access_token", access_token, accessTokenCookieOptions);
+    res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);
+    res.cookie("logged_in", true, {
+      ...accessTokenCookieOptions,
+      httpOnly: false,
+    });
+
+    return res.status(200).json(
+      generateJson({
+        status: "success",
+        data: {
+          user: omit(user, authResponseExcludedFields),
+          token: access_token
+        },
+      })
+    );
+  } catch (error) {
+    next(error);
   }
 };
