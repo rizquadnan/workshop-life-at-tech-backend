@@ -37,7 +37,9 @@ export const registerUserSchema = object({
 
 export type RegisterUserInput = TypeOf<typeof registerUserSchema>["body"];
 
-export type AuthRouteParam = { userType: "trainer" | "customer" };
+export type UserType = "trainer" | "customer";
+
+export type AuthRouteParam = { userType: UserType };
 
 export const authResponseExcludedFields = ["password"];
 

@@ -7,6 +7,10 @@ export const createTrainer = async (input: Prisma.TrainerCreateInput) => {
   });
 };
 
-export const findUniqueTrainer = async (email: string) => {
+export const findUniqueTrainerByEmail = async (email: string) => {
   return await db.trainer.findUnique({ where: { email } });
+};
+
+export const findUniqueTrainerById = async (id: number) => {
+  return await db.trainer.findUnique({ where: { id } });
 };

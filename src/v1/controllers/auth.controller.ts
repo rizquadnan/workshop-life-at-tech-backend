@@ -7,12 +7,17 @@ import {
   RegisterUserInput,
   AuthRouteParam,
   authResponseExcludedFields,
+  UserType,
 } from "../schemas/user.schema";
-import { createTrainer, findUniqueTrainer } from "../services/trainer.service";
-import { createCustomer } from "../services/customer.service";
+import {
+  createTrainer,
+  findUniqueTrainerByEmail,
+  findUniqueTrainerById,
+} from "../services/trainer.service";
+import { createCustomer, findUniqueCustomerByEmail, findUniqueCustomerById } from "../services/customer.service";
 import { omit } from "lodash";
 import AppError from "../utils/appError";
-import { signTokens } from "../utils/jwt";
+import { signJwt, signTokens, verifyJwt } from "../utils/jwt";
 import config from "config";
 
 const cookiesOptions: CookieOptions = {
@@ -82,8 +87,8 @@ export const loginUserHandler = async (
     const userType = req.params.userType;
 
     const user = await (userType === "trainer"
-      ? findUniqueTrainer(email.toLowerCase())
-      : null);
+      ? findUniqueTrainerByEmail(email.toLowerCase())
+      : findUniqueCustomerByEmail(email.toLowerCase()));
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return next(new AppError(400, "Invalid email or password"));
@@ -103,11 +108,71 @@ export const loginUserHandler = async (
         status: "success",
         data: {
           user: omit(user, authResponseExcludedFields),
-          token: access_token
+          token: access_token,
         },
       })
     );
   } catch (error) {
     next(error);
+  }
+};
+
+export const refreshAccessTokenHandler = async (
+  req: Request<AuthRouteParam, {}, {}>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const refresh_token = req.cookies.refresh_token;
+
+    const userType = req.params.userType;
+
+    const message = "Could not refresh access token";
+
+    if (!refresh_token) {
+      return next(new AppError(403, message));
+    }
+
+    // Validate refresh token
+    const decoded = verifyJwt<{ sub: number }>(
+      refresh_token,
+      "refreshTokenPublicKey"
+    );
+
+    if (!decoded) {
+      return next(new AppError(403, message));
+    }
+
+    const user = await (userType === "trainer"
+      ? findUniqueTrainerById(decoded.sub)
+      : findUniqueCustomerById(decoded.sub));
+  
+    if (!user) {
+      return next(new AppError(403, message));
+    }
+
+    // Sign new access token
+    const access_token = signJwt(
+      { sub: user.id },
+      "accessTokenPrivateKey",
+      {
+        expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
+      }
+    );
+
+    // 4. Add Cookies
+    res.cookie("access_token", access_token, accessTokenCookieOptions);
+    res.cookie("logged_in", true, {
+      ...accessTokenCookieOptions,
+      httpOnly: false,
+    });
+
+    // 5. Send response
+    res.status(200).json({
+      status: "success",
+      access_token,
+    });
+  } catch (err: any) {
+    next(err);
   }
 };

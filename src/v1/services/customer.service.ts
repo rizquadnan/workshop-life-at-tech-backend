@@ -6,3 +6,11 @@ export const createCustomer = async (input: Prisma.CustomerCreateInput) => {
     data: input,
   }));
 };
+
+export const findUniqueCustomerByEmail = async (email: string) => {
+  return await db.customer.findUnique({ where: { email } });
+};
+
+export const findUniqueCustomerById = async (id: number) => {
+  return await db.customer.findUnique({ where: { id } });
+};
