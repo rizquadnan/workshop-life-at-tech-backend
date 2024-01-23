@@ -42,6 +42,8 @@ export const registerUserHandler = async (
   res: Response,
   next: NextFunction
 ) => {
+  // TODO: verification code via email
+  // TODO: register via google
   try {
     const userType = req.params.userType;
     const hashedPassword = await bcrypt.hash(req.body.password, 12);
@@ -82,6 +84,7 @@ export const loginUserHandler = async (
   res: Response,
   next: NextFunction
 ) => {
+  // TODO: login via google
   try {
     const { email, password } = req.body;
     const userType = req.params.userType;
