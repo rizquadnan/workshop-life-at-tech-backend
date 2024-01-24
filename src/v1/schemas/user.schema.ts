@@ -41,7 +41,7 @@ export type UserType = "trainer" | "customer";
 
 export type AuthRouteParam = { userType: UserType };
 
-export const authResponseExcludedFields = ["password"];
+export const authResponseExcludedFields = ["password", "passwordResetToken", "passwordResetAt"];
 
 export const loginUserSchema = object({
   body: object({

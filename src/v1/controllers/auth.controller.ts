@@ -273,6 +273,22 @@ function logout(res: Response) {
   res.cookie("logged_in", "", { maxAge: 1 });
 }
 
+export const logoutUserHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    logout(res);
+
+    res.status(200).json({
+      status: "success",
+    });
+  } catch (err: any) {
+    next(err);
+  }
+};
+
 export const resetPasswordHandler = async (
   req: Request<
     ResetPasswordInput["params"] & AuthRouteParam,

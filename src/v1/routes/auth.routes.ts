@@ -10,6 +10,7 @@ import {
 import {
   forgotPasswordHandler,
   loginUserHandler,
+  logoutUserHandler,
   refreshAccessTokenHandler,
   registerUserHandler,
   resetPasswordHandler,
@@ -34,14 +35,7 @@ router.post(
   refreshAccessTokenHandler
 );
 
-router.post("/logout", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "logout in development",
-    })
-  );
-});
+router.post("/logout", logoutUserHandler);
 
 router.post(
   "/forgot_password/:userType((trainer|customer))",
