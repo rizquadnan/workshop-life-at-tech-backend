@@ -6,7 +6,7 @@ import {
   loginUserSchema,
   registerUserSchema,
   resetPasswordSchema,
-} from "../schemas/user.schema";
+} from "../schemas/auth.schema";
 import {
   forgotPasswordHandler,
   loginUserHandler,

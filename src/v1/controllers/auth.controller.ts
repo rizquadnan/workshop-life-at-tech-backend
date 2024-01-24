@@ -11,21 +11,21 @@ import {
   UserType,
   ForgotPasswordInput,
   ResetPasswordInput,
-} from "../schemas/user.schema";
+} from "../schemas/auth.schema";
 import {
   createTrainer,
   findTrainerForPasswordReset,
   findUniqueTrainerByEmail,
   findUniqueTrainerById,
   updateTrainer,
-} from "../services/trainer.service";
+} from "../services/auth.trainer.service";
 import {
   createCustomer,
   findCustomerForPasswordReset,
   findUniqueCustomerByEmail,
   findUniqueCustomerById,
   updateCustomer,
-} from "../services/customer.service";
+} from "../services/auth.customer.service";
 import { omit } from "lodash";
 import AppError from "../utils/appError";
 import { signJwt, signTokens, verifyJwt } from "../utils/jwt";
