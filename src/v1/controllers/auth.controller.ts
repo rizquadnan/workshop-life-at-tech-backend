@@ -109,7 +109,7 @@ export const loginUserHandler = async (
       return next(new AppError(400, "Invalid email or password"));
     }
 
-    const { access_token, refresh_token } = await signTokens(user.id);
+    const { access_token, refresh_token } = await signTokens(user.id, userType);
 
     res.cookie("access_token", access_token, accessTokenCookieOptions);
     res.cookie("refresh_token", refresh_token, refreshTokenCookieOptions);

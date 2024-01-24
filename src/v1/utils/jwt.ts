@@ -1,5 +1,6 @@
 import jwt, { SignOptions } from "jsonwebtoken";
 import config from "config";
+import { UserType } from "../schemas/auth.schema";
 
 export const signJwt = (
   payload: Object,
@@ -34,14 +35,22 @@ export const verifyJwt = <T>(
   }
 };
 
-export const signTokens = async (userId: number) => {
-  const access_token = signJwt({ sub: userId }, "accessTokenPrivateKey", {
-    expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
-  });
+export const signTokens = async (userId: number, userType: UserType) => {
+  const access_token = signJwt(
+    { sub: userId, userType },
+    "accessTokenPrivateKey",
+    {
+      expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
+    }
+  );
 
-  const refresh_token = signJwt({ sub: userId }, "refreshTokenPrivateKey", {
-    expiresIn: `${config.get<number>("refreshTokenExpiresIn")}m`,
-  });
+  const refresh_token = signJwt(
+    { sub: userId, userType },
+    "refreshTokenPrivateKey",
+    {
+      expiresIn: `${config.get<number>("refreshTokenExpiresIn")}m`,
+    }
+  );
 
   return { access_token, refresh_token };
 };
