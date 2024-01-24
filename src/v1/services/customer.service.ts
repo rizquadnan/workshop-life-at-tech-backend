@@ -15,6 +15,14 @@ export const findUniqueCustomerById = async (id: number) => {
   return await db.customer.findUnique({ where: { id } });
 };
 
+export const findCustomerForPasswordReset = async (
+  passwordResetToken: string
+) => {
+  return await db.customer.findFirst({
+    where: { passwordResetToken, passwordResetAt: { gt: new Date() } },
+  });
+};
+
 export const updateCustomer = async (
   where: Prisma.CustomerWhereUniqueInput,
   data: Prisma.CustomerUpdateInput,

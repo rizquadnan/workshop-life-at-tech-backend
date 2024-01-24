@@ -10,15 +10,18 @@ import {
   authResponseExcludedFields,
   UserType,
   ForgotPasswordInput,
+  ResetPasswordInput,
 } from "../schemas/user.schema";
 import {
   createTrainer,
+  findTrainerForPasswordReset,
   findUniqueTrainerByEmail,
   findUniqueTrainerById,
   updateTrainer,
 } from "../services/trainer.service";
 import {
   createCustomer,
+  findCustomerForPasswordReset,
   findUniqueCustomerByEmail,
   findUniqueCustomerById,
   updateCustomer,
@@ -201,7 +204,7 @@ export const forgotPasswordHandler = async (
     const message =
       "You will receive a reset email if user with that email exist";
     if (!user) {
-      console.log('User not found.')
+      console.log("User not found.");
       return res.status(200).json({
         status: "success",
         message,
@@ -233,7 +236,9 @@ export const forgotPasswordHandler = async (
         ));
 
     try {
-      const url = `${config.get<string>("origin")}/resetpassword/${resetToken}`;
+      const url = `${config.get<string>(
+        "origin"
+      )}/auth/v1/reset_password/${userType}/${resetToken}`;
       await new Email(user, url).sendPasswordResetToken();
 
       res.status(200).json({
@@ -257,6 +262,78 @@ export const forgotPasswordHandler = async (
         message: "There was an error sending email",
       });
     }
+  } catch (err: any) {
+    next(err);
+  }
+};
+
+function logout(res: Response) {
+  res.cookie("access_token", "", { maxAge: 1 });
+  res.cookie("refresh_token", "", { maxAge: 1 });
+  res.cookie("logged_in", "", { maxAge: 1 });
+}
+
+export const resetPasswordHandler = async (
+  req: Request<
+    ResetPasswordInput["params"] & AuthRouteParam,
+    Record<string, never>,
+    ResetPasswordInput["body"]
+  >,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userType = req.params.userType;
+
+    // Get the user from the collection
+    const passwordResetToken = crypto
+      .createHash("sha256")
+      .update(req.params.resetToken)
+      .digest("hex");
+
+    const user = await (userType === "trainer"
+      ? findTrainerForPasswordReset(passwordResetToken)
+      : findCustomerForPasswordReset(passwordResetToken));
+
+    if (!user) {
+      return res.status(403).json({
+        status: "fail",
+        message: "Invalid token or token has expired",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 12);
+    // Change password data
+    await (userType === "trainer"
+      ? updateTrainer(
+          {
+            id: user.id,
+          },
+          {
+            password: hashedPassword,
+            passwordResetToken: null,
+            passwordResetAt: null,
+          },
+          { email: true }
+        )
+      : updateCustomer(
+          {
+            id: user.id,
+          },
+          {
+            password: hashedPassword,
+            passwordResetToken: null,
+            passwordResetAt: null,
+          },
+          { email: true }
+        ));
+
+    logout(res);
+    
+    res.status(200).json({
+      status: "success",
+      message: "Password data updated successfully",
+    });
   } catch (err: any) {
     next(err);
   }

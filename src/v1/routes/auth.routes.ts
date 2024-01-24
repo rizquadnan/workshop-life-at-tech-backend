@@ -5,12 +5,14 @@ import {
   forgotPasswordSchema,
   loginUserSchema,
   registerUserSchema,
+  resetPasswordSchema,
 } from "../schemas/user.schema";
 import {
   forgotPasswordHandler,
   loginUserHandler,
   refreshAccessTokenHandler,
   registerUserHandler,
+  resetPasswordHandler,
 } from "../controllers/auth.controller";
 
 const router = Router();
@@ -47,13 +49,10 @@ router.post(
   forgotPasswordHandler
 );
 
-router.patch("/reset_password/:reset", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "reset_password in development",
-    })
-  );
-});
+router.patch(
+  "/reset_password/:userType((trainer|customer))/:resetToken",
+  validate(resetPasswordSchema),
+  resetPasswordHandler
+);
 
 export default router;

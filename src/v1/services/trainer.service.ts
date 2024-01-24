@@ -15,10 +15,16 @@ export const findUniqueTrainerById = async (id: number) => {
   return await db.trainer.findUnique({ where: { id } });
 };
 
+export const findTrainerForPasswordReset = async (passwordResetToken: string) => {
+  return await db.trainer.findFirst({
+    where: { passwordResetToken, passwordResetAt: { gt: new Date() } },
+  });
+};
+
 export const updateTrainer = async (
   where: Prisma.TrainerWhereUniqueInput,
   data: Prisma.TrainerUpdateInput,
   select?: Prisma.TrainerSelect
 ) => {
-  return (await db.trainer.update({ where, data, select }));
+  return await db.trainer.update({ where, data, select });
 };
