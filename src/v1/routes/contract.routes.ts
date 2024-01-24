@@ -13,4 +13,13 @@ router.get("/", (req, res) => {
   }))
 })
 
+router.post("/", (req, res) => {
+  res.status(200).json(
+    generateJson({
+      status: "success",
+      message: "post contracts still in development",
+    })
+  );
+})
+
 export default router;
