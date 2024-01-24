@@ -1,4 +1,5 @@
 import { CookieOptions, NextFunction, Request, Response } from "express";
+import crypto from "crypto";
 import { generateJson } from "../utils/genJson";
 import bcrypt from "bcryptjs";
 import { Prisma } from "@prisma/client";
@@ -8,17 +9,25 @@ import {
   AuthRouteParam,
   authResponseExcludedFields,
   UserType,
+  ForgotPasswordInput,
 } from "../schemas/user.schema";
 import {
   createTrainer,
   findUniqueTrainerByEmail,
   findUniqueTrainerById,
+  updateTrainer,
 } from "../services/trainer.service";
-import { createCustomer, findUniqueCustomerByEmail, findUniqueCustomerById } from "../services/customer.service";
+import {
+  createCustomer,
+  findUniqueCustomerByEmail,
+  findUniqueCustomerById,
+  updateCustomer,
+} from "../services/customer.service";
 import { omit } from "lodash";
 import AppError from "../utils/appError";
 import { signJwt, signTokens, verifyJwt } from "../utils/jwt";
 import config from "config";
+import Email from "../utils/email";
 
 const cookiesOptions: CookieOptions = {
   httpOnly: true,
@@ -149,19 +158,15 @@ export const refreshAccessTokenHandler = async (
     const user = await (userType === "trainer"
       ? findUniqueTrainerById(decoded.sub)
       : findUniqueCustomerById(decoded.sub));
-  
+
     if (!user) {
       return next(new AppError(403, message));
     }
 
     // Sign new access token
-    const access_token = signJwt(
-      { sub: user.id },
-      "accessTokenPrivateKey",
-      {
-        expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
-      }
-    );
+    const access_token = signJwt({ sub: user.id }, "accessTokenPrivateKey", {
+      expiresIn: `${config.get<number>("accessTokenExpiresIn")}m`,
+    });
 
     // 4. Add Cookies
     res.cookie("access_token", access_token, accessTokenCookieOptions);
@@ -175,6 +180,83 @@ export const refreshAccessTokenHandler = async (
       status: "success",
       access_token,
     });
+  } catch (err: any) {
+    next(err);
+  }
+};
+
+export const forgotPasswordHandler = async (
+  req: Request<AuthRouteParam, {}, ForgotPasswordInput>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userType = req.params.userType;
+
+    // Get the user from the collection
+    const user = await (userType === "trainer"
+      ? findUniqueTrainerByEmail(req.body.email)
+      : findUniqueCustomerByEmail(req.body.email));
+
+    const message =
+      "You will receive a reset email if user with that email exist";
+    if (!user) {
+      console.log('User not found.')
+      return res.status(200).json({
+        status: "success",
+        message,
+      });
+    }
+
+    const resetToken = crypto.randomBytes(32).toString("hex");
+    const passwordResetToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
+
+    await (userType === "trainer"
+      ? updateTrainer(
+          { id: user.id },
+          {
+            passwordResetToken,
+            passwordResetAt: new Date(Date.now() + 10 * 60 * 1000),
+          },
+          { email: true }
+        )
+      : updateCustomer(
+          { id: user.id },
+          {
+            passwordResetToken,
+            passwordResetAt: new Date(Date.now() + 10 * 60 * 1000),
+          },
+          { email: true }
+        ));
+
+    try {
+      const url = `${config.get<string>("origin")}/resetpassword/${resetToken}`;
+      await new Email(user, url).sendPasswordResetToken();
+
+      res.status(200).json({
+        status: "success",
+        message,
+      });
+    } catch (err: any) {
+      userType === "trainer"
+        ? await updateTrainer(
+            { id: user.id },
+            { passwordResetToken: null, passwordResetAt: null },
+            {}
+          )
+        : await updateCustomer(
+            { id: user.id },
+            { passwordResetToken: null, passwordResetAt: null },
+            {}
+          );
+      return res.status(500).json({
+        status: "error",
+        message: "There was an error sending email",
+      });
+    }
   } catch (err: any) {
     next(err);
   }

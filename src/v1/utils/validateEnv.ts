@@ -16,10 +16,10 @@ function validateEnv() {
     JWT_REFRESH_TOKEN_PRIVATE_KEY: str(),
     JWT_REFRESH_TOKEN_PUBLIC_KEY: str(),
 
-    // EMAIL_USER: str(),
-    // EMAIL_PASS: str(),
-    // EMAIL_HOST: str(),
-    // EMAIL_PORT: port(),
+    EMAIL_USER: str(),
+    EMAIL_PASS: str(),
+    EMAIL_HOST: str(),
+    EMAIL_PORT: port(),
   });
 }
 

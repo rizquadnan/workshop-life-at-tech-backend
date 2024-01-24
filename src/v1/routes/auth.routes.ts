@@ -1,8 +1,13 @@
 import { Router } from "express";
 import { generateJson } from "../utils/genJson";
 import { validate } from "../middlewares/validate";
-import { loginUserSchema, registerUserSchema } from "../schemas/user.schema";
 import {
+  forgotPasswordSchema,
+  loginUserSchema,
+  registerUserSchema,
+} from "../schemas/user.schema";
+import {
+  forgotPasswordHandler,
   loginUserHandler,
   refreshAccessTokenHandler,
   registerUserHandler,
@@ -22,7 +27,10 @@ router.post(
   loginUserHandler
 );
 
-router.post("/refresh/:userType((trainer|customer))", refreshAccessTokenHandler);
+router.post(
+  "/refresh/:userType((trainer|customer))",
+  refreshAccessTokenHandler
+);
 
 router.post("/logout", (req, res) => {
   res.status(200).json(
@@ -33,14 +41,11 @@ router.post("/logout", (req, res) => {
   );
 });
 
-router.post("/forgot_password", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "forgot_password in development",
-    })
-  );
-});
+router.post(
+  "/forgot_password/:userType((trainer|customer))",
+  validate(forgotPasswordSchema),
+  forgotPasswordHandler
+);
 
 router.patch("/reset_password/:reset", (req, res) => {
   res.status(200).json(

@@ -14,3 +14,11 @@ export const findUniqueCustomerByEmail = async (email: string) => {
 export const findUniqueCustomerById = async (id: number) => {
   return await db.customer.findUnique({ where: { id } });
 };
+
+export const updateCustomer = async (
+  where: Prisma.CustomerWhereUniqueInput,
+  data: Prisma.CustomerUpdateInput,
+  select?: Prisma.CustomerSelect
+) => {
+  return (await db.customer.update({ where, data, select }));
+};

@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma, Trainer } from "@prisma/client";
 import db from "../../db";
 
 export const createTrainer = async (input: Prisma.TrainerCreateInput) => {
@@ -13,4 +13,12 @@ export const findUniqueTrainerByEmail = async (email: string) => {
 
 export const findUniqueTrainerById = async (id: number) => {
   return await db.trainer.findUnique({ where: { id } });
+};
+
+export const updateTrainer = async (
+  where: Prisma.TrainerWhereUniqueInput,
+  data: Prisma.TrainerUpdateInput,
+  select?: Prisma.TrainerSelect
+) => {
+  return (await db.trainer.update({ where, data, select }));
 };

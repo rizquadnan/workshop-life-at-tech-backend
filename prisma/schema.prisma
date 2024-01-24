@@ -16,49 +16,53 @@ enum RecordStatus {
 }
 
 model Trainer {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
-  name      String
-  whatsapp  String
-  rStatus   RecordStatus
-  contracts Contract[]
+  id                 Int          @id @default(autoincrement())
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  email              String       @unique
+  password           String
+  name               String
+  whatsapp           String
+  rStatus            RecordStatus
+  contracts          Contract[]
+  passwordResetToken String?
+  passwordResetAt    DateTime?
 }
 
 model Customer {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
-  name      String
-  whatsapp  String
-  rStatus   RecordStatus
-  contracts Contract[]
+  id                 Int          @id @default(autoincrement())
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  email              String       @unique
+  password           String
+  name               String
+  whatsapp           String
+  rStatus            RecordStatus
+  contracts          Contract[]
+  passwordResetToken String?
+  passwordResetAt    DateTime?
 }
 
 model Contract {
-  id                  Int      @id @default(autoincrement())
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  trainerId           Int
-  trainer             Trainer @relation(fields: [trainerId], references: [id]) 
-  customerId          Int
-  customer            Customer @relation(fields: [customerId], references: [id])
-  startTime           DateTime
-  endTime             DateTime
-  amount_of_exercise  Int
-  exercises Exercises[]
+  id                 Int         @id @default(autoincrement())
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  trainerId          Int
+  trainer            Trainer     @relation(fields: [trainerId], references: [id])
+  customerId         Int
+  customer           Customer    @relation(fields: [customerId], references: [id])
+  startTime          DateTime
+  endTime            DateTime
+  amount_of_exercise Int
+  exercises          Exercises[]
 }
 
 model Exercises {
-  id                  Int      @id @default(autoincrement())
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-  startTime           DateTime
-  endTime             DateTime
-  contractId          Int
-  contract            Contract @relation(fields: [contractId], references: [id])
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  startTime  DateTime
+  endTime    DateTime
+  contractId Int
+  contract   Contract @relation(fields: [contractId], references: [id])
 }

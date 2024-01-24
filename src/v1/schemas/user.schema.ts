@@ -51,3 +51,15 @@ export const loginUserSchema = object({
 });
 
 export type LoginUserInput = TypeOf<typeof loginUserSchema>["body"];
+
+export const forgotPasswordSchema = object({
+  body: object({
+    email: string({
+      required_error: "Email is required",
+    }).email("Email is invalid"),
+  }),
+});
+
+export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>['body'];
+
+
