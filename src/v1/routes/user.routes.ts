@@ -6,10 +6,12 @@ import { requireUser } from "../middlewares/requireUser";
 
 const router = Router();
 
+router.use(deserializeUser, requireUser);
+
 // used in:
 // - trainer app, profile
 // - customer app, profile
-router.get("/me", deserializeUser, requireUser, getMeHandler);
+router.get("/me", getMeHandler);
 
 // used in:
 // - trainer app, profile
