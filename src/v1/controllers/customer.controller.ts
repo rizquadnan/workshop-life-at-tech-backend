@@ -4,11 +4,6 @@ import { generateJson } from "../utils/genJson";
 import { omit } from "lodash";
 import { Customer } from "@prisma/client";
 
-// 1. implement get all
-// - hide a couple fields
-// 2. implement filter by trainer id
-// TODO: implement role based authorization
-
 const filterExcludedCustomersFields = (customers: Customer[]): Customer[] => {
   return customers.map(
     (c) =>
@@ -20,6 +15,8 @@ const filterExcludedCustomersFields = (customers: Customer[]): Customer[] => {
       ]) as Customer
   );
 };
+
+// TODO: implement role based authorization
 export const getCustomersHandler = async (
   req: Request<{}, {}, {}>,
   res: Response,
