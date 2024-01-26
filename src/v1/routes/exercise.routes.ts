@@ -28,10 +28,8 @@ router.post("/", validate(createExerciseSchema), createExerciseHandler);
 // - customer app, dashboard
 // - customer app, train
 
-// - get exercise
-// - filter by trainer id
-// - filter by customer id
-// - filter by exercise status
+// TODO: role authorization
+// TODO: filter by exercise status
 router.get("/", validate(getExerciseSchema), getTrainerExercisesHandler);
 
 // used in:
