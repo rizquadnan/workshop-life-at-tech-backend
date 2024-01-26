@@ -29,7 +29,7 @@ model Trainer {
   passwordResetAt    DateTime?
 
   @@unique([email, passwordResetToken])
-  @@index([email,passwordResetToken])
+  @@index([email, passwordResetToken])
 }
 
 model Customer {
@@ -46,7 +46,7 @@ model Customer {
   passwordResetAt    DateTime?
 
   @@unique([email, passwordResetToken])
-  @@index([email,passwordResetToken])
+  @@index([email, passwordResetToken])
 }
 
 model Contract {
@@ -61,14 +61,24 @@ model Contract {
   endTime            DateTime
   amount_of_exercise Int
   exercises          Exercises[]
+
+  @@unique([trainerId, customerId])
+  @@index([trainerId, customerId])
+}
+
+enum ExerciseStatus {
+  ACTIVE
+  PENDING
+  FINISHED
 }
 
 model Exercises {
-  id         Int      @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  startTime  DateTime
-  endTime    DateTime
-  contractId Int
-  contract   Contract @relation(fields: [contractId], references: [id])
+  id             Int            @id @default(autoincrement())
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  startTime      DateTime
+  endTime        DateTime?
+  contractId     Int
+  contract       Contract       @relation(fields: [contractId], references: [id])
+  exerciseStatus ExerciseStatus
 }

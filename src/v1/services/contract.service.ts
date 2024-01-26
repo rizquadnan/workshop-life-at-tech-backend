@@ -5,6 +5,10 @@ export const createContract = async (contract: Prisma.ContractCreateInput) => {
   return await db.contract.create({ data: contract });
 };
 
+export const getContractById = async (contractId: number) => {
+  return await db.contract.findUnique({ where: { id: contractId } });
+};
+
 export const getContractsByTrainerCustomerId = async (
   trainerId?: number,
   customerId?: number

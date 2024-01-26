@@ -1,16 +1,18 @@
 import { Router } from "express";
 import { generateJson } from "../utils/genJson";
+import { createExerciseHandler } from "./exercise.controller";
+import { validate } from "../middlewares/validate";
+import { createExerciseSchema } from "../schemas/exercise.schema";
 
 const router = Router();
 
 // used in:
 // - trainer app, train
-router.post("/", (req, res) => {
-  res.status(200).json(generateJson({
-    status: "success",
-    message: "post exercise in development"
-  }))
-})
+
+// - validate schema
+// - create exercise
+// TODO: role authorization
+router.post("/", validate(createExerciseSchema), createExerciseHandler);
 
 // used in:
 // - trainer app, train

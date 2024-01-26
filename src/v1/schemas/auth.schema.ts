@@ -41,7 +41,11 @@ export type UserType = "trainer" | "customer";
 
 export type AuthRouteParam = { userType: UserType };
 
-export const authResponseExcludedFields = ["password", "passwordResetToken", "passwordResetAt"];
+export const authResponseExcludedFields = [
+  "password",
+  "passwordResetToken",
+  "passwordResetAt",
+];
 
 export const loginUserSchema = object({
   body: object({
@@ -60,7 +64,7 @@ export const forgotPasswordSchema = object({
   }),
 });
 
-export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>['body'];
+export type ForgotPasswordInput = TypeOf<typeof forgotPasswordSchema>["body"];
 
 export const resetPasswordSchema = object({
   params: object({
@@ -80,5 +84,3 @@ export const resetPasswordSchema = object({
 });
 
 export type ResetPasswordInput = TypeOf<typeof resetPasswordSchema>;
-
-

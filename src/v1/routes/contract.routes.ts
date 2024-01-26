@@ -20,9 +20,6 @@ router.use(deserializeUser, requireUser);
 // - trainer app, dashboard
 // - customer app, dashboard
 
-// - get all contracts
-// - filter by trainer id
-// - filter by customer id
 router.get("/", validate(getContractSchema), getContractsHandler);
 
 router.post("/", validate(postContractSchema), postContractHandler);
