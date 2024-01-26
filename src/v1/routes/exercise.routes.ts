@@ -1,31 +1,38 @@
 import { Router } from "express";
 import { generateJson } from "../utils/genJson";
-import { createExerciseHandler } from "./exercise.controller";
+import {
+  createExerciseHandler,
+  getTrainerExercisesHandler,
+} from "./exercise.controller";
 import { validate } from "../middlewares/validate";
-import { createExerciseSchema } from "../schemas/exercise.schema";
+import {
+  createExerciseSchema,
+  getExerciseSchema,
+} from "../schemas/exercise.schema";
+import { deserializeUser } from "../middlewares/deserializeUser";
+import { requireUser } from "../middlewares/requireUser";
 
 const router = Router();
+
+router.use(deserializeUser, requireUser);
 
 // used in:
 // - trainer app, train
 
-// - validate schema
-// - create exercise
 // TODO: role authorization
+// TODO: tenant enforcement
 router.post("/", validate(createExerciseSchema), createExerciseHandler);
 
 // used in:
 // - trainer app, train
 // - customer app, dashboard
 // - customer app, train
-router.get("/", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "get exercise in development",
-    })
-  );
-});
+
+// - get exercise
+// - filter by trainer id
+// - filter by customer id
+// - filter by exercise status
+router.get("/", validate(getExerciseSchema), getTrainerExercisesHandler);
 
 // used in:
 // - trainer app, train
@@ -40,3 +47,4 @@ router.patch("/", (req, res) => {
 });
 
 export default router;
+0;

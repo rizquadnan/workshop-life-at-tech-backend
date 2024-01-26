@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
-import AppError from '../utils/appError';
+import { NextFunction, Request, Response } from "express";
+import AppError from "../utils/appError";
 
 export const requireUser = (
   req: Request,
@@ -8,8 +8,9 @@ export const requireUser = (
 ) => {
   try {
     const user = res.locals.user;
+    const userType = res.locals.userType;
 
-    if (!user) {
+    if (!user || !userType) {
       return next(
         new AppError(400, `Session has expired or user doesn't exist`)
       );

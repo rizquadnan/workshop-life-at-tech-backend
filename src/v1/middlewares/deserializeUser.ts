@@ -48,6 +48,7 @@ export const deserializeUser = async (
 
     // Add user to res.locals
     res.locals.user = omit(user, authResponseExcludedFields);
+    res.locals.userType = decoded.userType;
 
     next();
   } catch (err: any) {
