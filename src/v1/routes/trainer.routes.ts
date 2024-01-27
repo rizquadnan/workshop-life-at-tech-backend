@@ -1,17 +1,16 @@
 import { Router } from "express";
-import { generateJson } from "../utils/genJson";
+import { deserializeUser } from "../middlewares/deserializeUser";
+import { requireUser } from "../middlewares/requireUser";
+import { getTrainerHandler } from "../controllers/trainer.controller";
 
 const router = Router();
 
+router.use(deserializeUser, requireUser);
+
 // used in:
 // - customer app, dashboard
-router.get("/", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "get trainer in development",
-    })
-  );
-});
+
+// TODO: role authorization
+router.get("/", getTrainerHandler);
 
 export default router;

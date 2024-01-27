@@ -15,3 +15,9 @@ export const getContractsByTrainerCustomerId = async (
 ) => {
   return await db.contract.findMany({ where: { trainerId, customerId } });
 };
+
+export const getActiveContracts = async (customerId?: number) => {
+  return await db.contract.findMany({
+    where: { customerId, contractStatus: "ACTIVE" },
+  });
+};

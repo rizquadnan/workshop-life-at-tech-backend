@@ -45,6 +45,7 @@ export const authResponseExcludedFields = [
   "password",
   "passwordResetToken",
   "passwordResetAt",
+  "rStatus",
 ];
 
 export const loginUserSchema = object({
