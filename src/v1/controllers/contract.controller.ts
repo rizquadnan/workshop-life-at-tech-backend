@@ -31,7 +31,6 @@ export const postContractHandler = async (
     const trainerId = res.locals.user.id as number;
 
     const trainer = await findUniqueTrainerById(trainerId);
-
     if (!trainer) {
       return res
         .status(404)
@@ -39,11 +38,24 @@ export const postContractHandler = async (
     }
 
     const customer = await findUniqueCustomerById(req.body.customerId);
-
     if (!customer) {
       return res
         .status(404)
         .json(generateJson({ status: "fail", message: "Customer not found." }));
+    }
+
+    const existingContract = await getContractsByTrainerCustomerId(
+      trainer.id,
+      customer.id
+    );
+    if (existingContract.some((c) => c.contractStatus === "ACTIVE")) {
+      return res.status(400).json(
+        generateJson({
+          status: "fail",
+          message:
+            "Cannot create contract when still having active contract with customer.",
+        })
+      );
     }
 
     const { startTime, endTime } = generateContractTime(

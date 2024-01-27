@@ -49,18 +49,24 @@ model Customer {
   @@index([email, passwordResetToken])
 }
 
+enum ContractStatus {
+  ACTIVE
+  IN_ACTIVE
+}
+
 model Contract {
-  id                 Int         @id @default(autoincrement())
-  createdAt          DateTime    @default(now())
-  updatedAt          DateTime    @updatedAt
+  id                 Int            @id @default(autoincrement())
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
   trainerId          Int
-  trainer            Trainer     @relation(fields: [trainerId], references: [id])
+  trainer            Trainer        @relation(fields: [trainerId], references: [id])
   customerId         Int
-  customer           Customer    @relation(fields: [customerId], references: [id])
+  customer           Customer       @relation(fields: [customerId], references: [id])
   startTime          DateTime
   endTime            DateTime
   amount_of_exercise Int
   exercises          Exercises[]
+  contractStatus     ContractStatus @default(ACTIVE)
 
   @@index([trainerId, customerId])
 }

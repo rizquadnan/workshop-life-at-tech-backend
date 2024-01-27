@@ -19,11 +19,8 @@ router.use(deserializeUser, requireUser);
 // used in:
 // - trainer app, dashboard
 // - customer app, dashboard
-
 router.get("/", validate(getContractSchema), getContractsHandler);
 
-// TODO:
-// - validate existing contract from same trainer and customer
 router.post("/", validate(postContractSchema), postContractHandler);
 
 export default router;
