@@ -62,7 +62,6 @@ model Contract {
   amount_of_exercise Int
   exercises          Exercises[]
 
-  @@unique([trainerId, customerId])
   @@index([trainerId, customerId])
 }
 

@@ -3,11 +3,13 @@ import { generateJson } from "../utils/genJson";
 import {
   createExerciseHandler,
   getTrainerExercisesHandler,
+  patchExerciseHandler,
 } from "./exercise.controller";
 import { validate } from "../middlewares/validate";
 import {
   createExerciseSchema,
   getExerciseSchema,
+  patchExerciseSchema,
 } from "../schemas/exercise.schema";
 import { deserializeUser } from "../middlewares/deserializeUser";
 import { requireUser } from "../middlewares/requireUser";
@@ -35,14 +37,13 @@ router.get("/", validate(getExerciseSchema), getTrainerExercisesHandler);
 // used in:
 // - trainer app, train
 // - customer app, train
-router.patch("/", (req, res) => {
-  res.status(200).json(
-    generateJson({
-      status: "success",
-      message: "patch exercise in development",
-    })
-  );
-});
+
+// - patch exercise to the proper direction per user
+router.patch(
+  "/:exerciseId",
+  validate(patchExerciseSchema),
+  patchExerciseHandler
+);
 
 export default router;
 0;

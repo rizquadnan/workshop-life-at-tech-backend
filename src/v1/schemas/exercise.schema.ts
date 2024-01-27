@@ -38,3 +38,14 @@ export type GetExerciseForTrainerResponse = Array<{
   customerName: string;
   exerciseStart: string;
 }>;
+
+export const patchExerciseSchema = object({
+  params: object({
+    exerciseId: string().refine(
+      (val) => (typeof val === "string" ? isNaN(Number(val)) === false : true),
+      { message: "exerciseId param must be a number." }
+    ),
+  }),
+});
+
+export type PatchExerciseInput = TypeOf<typeof patchExerciseSchema>["params"];

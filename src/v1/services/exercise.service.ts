@@ -11,7 +11,8 @@ export const getExercisesForTrainer = async (args: {
   exerciseStatus?: Prisma.ExercisesCreateInput["exerciseStatus"];
 }) => {
   return (await db.$queryRaw`
-    SELECT "Exercises".id, 
+    SELECT "Exercises".id,
+      "Exercises"."exerciseStatus", 
       "Contract"."trainerId",
       "Contract"."customerId",
       "Contract"."startTime" AS "exerciseStart",
@@ -27,7 +28,8 @@ export const getExercisesForCustomer = async (args: {
   exerciseStatus?: Prisma.ExercisesCreateInput["exerciseStatus"];
 }) => {
   return (await db.$queryRaw`
-    SELECT "Exercises".id, 
+    SELECT "Exercises".id,
+      "Exercises"."exerciseStatus", 
       "Contract"."trainerId",
       "Contract"."customerId",
       "Contract"."startTime" AS "exerciseStart",
@@ -36,4 +38,14 @@ export const getExercisesForCustomer = async (args: {
     INNER JOIN "Contract" ON "Exercises"."contractId"="Contract".id
     INNER JOIN "Trainer" ON "Contract"."trainerId"="Trainer".id
     WHERE "Contract"."customerId"=${args.customerId};`) as GetExerciseForTrainerResponse;
+};
+
+export const patchExercise = async (
+  exerciseId: number,
+  exerciseStatus: Prisma.ExercisesUpdateInput["exerciseStatus"]
+) => {
+  return await db.exercises.update({
+    where: { id: exerciseId },
+    data: { exerciseStatus },
+  });
 };
