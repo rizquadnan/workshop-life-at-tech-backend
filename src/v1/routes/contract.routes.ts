@@ -22,6 +22,8 @@ router.use(deserializeUser, requireUser);
 
 router.get("/", validate(getContractSchema), getContractsHandler);
 
+// TODO:
+// - validate existing contract from same trainer and customer
 router.post("/", validate(postContractSchema), postContractHandler);
 
 export default router;
