@@ -2,12 +2,14 @@ import { Router } from "express";
 import { generateJson } from "../utils/genJson";
 import { validate } from "../middlewares/validate";
 import {
+  changePasswordSchema,
   forgotPasswordSchema,
   loginUserSchema,
   registerUserSchema,
   resetPasswordSchema,
 } from "../schemas/auth.schema";
 import {
+  changePasswordHandler,
   forgotPasswordHandler,
   loginUserHandler,
   logoutUserHandler,
@@ -15,6 +17,8 @@ import {
   registerUserHandler,
   resetPasswordHandler,
 } from "../controllers/auth.controller";
+import { deserializeUser } from "../middlewares/deserializeUser";
+import { requireUser } from "../middlewares/requireUser";
 
 const router = Router();
 
@@ -47,6 +51,14 @@ router.patch(
   "/reset_password/:userType((trainer|customer))/:resetToken",
   validate(resetPasswordSchema),
   resetPasswordHandler
+);
+
+router.patch(
+  "/change_password",
+  validate(changePasswordSchema),
+  deserializeUser,
+  requireUser,
+  changePasswordHandler
 );
 
 export default router;

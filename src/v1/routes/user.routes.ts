@@ -16,6 +16,7 @@ router.get("/me", getMeHandler);
 // used in:
 // - trainer app, profile
 // - customer app, profile
+
 router.patch("/me", (req, res) => {
   res.status(200).json(
     generateJson({
