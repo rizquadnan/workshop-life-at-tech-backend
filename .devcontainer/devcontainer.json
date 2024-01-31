@@ -16,7 +16,19 @@
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "yarn install",
 
-  "network_mode": "host"
+  "network_mode": "host",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "YoavBls.pretty-ts-errors",
+        "esbenp.prettier-vscode",
+        "jasonnutter.search-node-modules",
+        "rangav.vscode-thunder-client",
+        "Prisma.prisma"
+      ]
+    }
+  }
 
   // Configure tool-specific properties.
   // "customizations": {},
