@@ -8,6 +8,7 @@ services:
     environment:
     - POSTGRES_USER=developer
     - POSTGRES_PASSWORD=rahasia
+    - POSTGRES_DB=development
     volumes:
     - db:/var/lib/postgresql/data
     healthcheck:
