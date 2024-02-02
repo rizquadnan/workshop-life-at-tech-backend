@@ -1,0 +1,4 @@
+- create all demo branches
+- create all exercise branches
+- create all exercise tips
+- tune slides
