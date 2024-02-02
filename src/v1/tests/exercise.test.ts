@@ -3,8 +3,9 @@ import request from "supertest";
 
 import db from "../../db";
 import app from "../../server";
-import { createUserAndGetLoginRes } from "../../tests/helpers/auth";
-import { generateContractTime } from "../controllers/contract.controller";
+// WORKSHOP-HINT: use this import for the test
+// import { createUserAndGetLoginRes } from "../../tests/helpers/auth";
+// import { generateContractTime } from "../controllers/contract.controller";
 
 describe("/api/v1/exercise", () => {
   describe("[POST] /api/v1/exercises", () => {
@@ -22,41 +23,10 @@ describe("/api/v1/exercise", () => {
     });
 
     it("should create exercise", async () => {
-      const { token, user: trainer } = await createUserAndGetLoginRes({
-        email: "for_create_exercise@gmail.com",
-      });
-
-      const customer = await db.customer.create({
-        data: {
-          email: "jd@gmail.com",
-          name: "Jio darno",
-          password: "jiodarno",
-          rStatus: "ACTIVE",
-          whatsapp: "084123123",
-        },
-      });
-
-      const contractTime = generateContractTime(30);
-      const contract = await db.contract.create({
-        data: {
-          customerId: customer.id,
-          trainerId: trainer.id,
-          amount_of_exercise: 12,
-          startTime: contractTime.startTime,
-          endTime: contractTime.endTime,
-        },
-      });
-
-      const { body, status } = await request(app)
-        .post("/api/v1/exercises")
-        .set({ authorization: `Bearer ${token}` })
-        .send({
-          contractId: contract.id,
-        });
-
-      expect(status).toBe(200);
-      expect(body.status).toBe("success");
-      expect(body.data.exerciseStatus).toBe("ACTIVE");
+      // WORKSHOP-HINT: to create exercise need to:
+      // - seed db with trainer
+      // - seed db with customer
+      // - seed db with contract
     });
   });
 });
