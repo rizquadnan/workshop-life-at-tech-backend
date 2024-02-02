@@ -19,7 +19,7 @@ app.use(cookieParser());
 // 3. Cors
 app.use(
   cors({
-    origin: [config.get<string>("origin")],
+    origin: [config.get<string>("frontendUrl")],
     credentials: true,
   })
 );
@@ -31,7 +31,7 @@ if (config.get("nodeEnv") === "development") app.use(morgan("dev"));
 app.use("/api/v1", v1Router);
 
 // HEALTH CHECK
-app.get("/api/health_check", (_, res: Response) => {
+app.get("/api/v1/health_check", (_, res: Response) => {
   res.status(200).json({
     status: "success",
     message: "Welcome to Baret PT API",
