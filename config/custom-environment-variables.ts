@@ -1,5 +1,7 @@
 export default {
   databaseUrl: "DATABASE_URL",
+  testingDatabaseUrl: "TESTING_DATABASE_URL",
+
   port: "PORT",
 
   frontendUrl: "FRONTEND_URL",

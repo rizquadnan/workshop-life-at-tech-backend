@@ -8,7 +8,9 @@
     "dev:c": "npx prisma db push && ./node_modules/.bin/nodemon ./src/index.ts",
     "docker:clear-db": "docker compose down -v",
     "build": "rm -rf ./dist && tsc",
-    "start": "NODE_ENV=production node ./dist/src/index.js"
+    "start": "NODE_ENV=production node ./dist/src/index.js",
+    "test": "./scripts/run-integration-test.sh",
+    "explore-db": "npx prisma studio"
   },
   "keywords": [],
   "author": "",
@@ -26,10 +28,13 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.10.6",
     "@types/nodemailer": "^6.4.14",
+    "@types/supertest": "^6.0.2",
     "nodemon": "^3.0.2",
     "prisma": "^5.7.1",
+    "supertest": "^6.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
