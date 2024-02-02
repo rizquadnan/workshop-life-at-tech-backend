@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 
 import db from "../../db";
 import app from "../../server";
-import { createUserAndGetLoginRes } from "../../tests/helpers/auth";
 describe("/api/v1/auth/change_password", () => {
   describe("[GET] /api/v1/auth/change_password", () => {
     it("should not be accesible if not logged", async () => {
@@ -21,48 +20,27 @@ describe("/api/v1/auth/change_password", () => {
     });
 
     it("should successfully change trainer password", async () => {
-      const oldPassword = "rahasia123";
-      const newPassword = "123rahasia";
-
-      const {
-        token,
-        user: { email: userEmail },
-      } = await createUserAndGetLoginRes({
-        email: "for_auth@gmail.com",
-        password: oldPassword,
-      });
-
-      await request(app)
-        .patch("/api/v1/auth/change_password")
-        .set({ authorization: `Bearer ${token}` })
-        .send({
-          password: newPassword,
-          passwordConfirm: newPassword,
-        });
-
-      // check login with old password, should fail
-      const secondLoginRes = await request(app)
-        .post("/api/v1/auth/login/trainer")
-        .send({
-          email: userEmail,
-          password: oldPassword,
-        });
-
-      expect(secondLoginRes.status).toBe(400);
-      expect(secondLoginRes.body.status).toBe("fail");
-      expect(secondLoginRes.body.message).toBe("Invalid email or password");
-
-      // check login with new password, should succeed
-      const thirdLoginRes = await request(app)
-        .post("/api/v1/auth/login/trainer")
-        .send({
-          email: userEmail,
-          password: newPassword,
-        });
-
-      expect(thirdLoginRes.status).toBe(200);
-      expect(thirdLoginRes.body.status).toBe("success");
-      expect(thirdLoginRes.body.data).toBeTruthy();
+      // WORKSHOP-HINT: to test change password you first need to
+      // - seed db with a user
+      // WORKSHOP-HINT: use this code to set auth headers for testing change password
+      // await request(app)
+      //   .patch("/api/v1/auth/change_password")
+      //   .set({ authorization: `Bearer ${token}` })
+      //   .send({
+      //     password: newPassword,
+      //     passwordConfirm: newPassword,
+      //   });
+      // WORKSHOP-HINT: use this code to seed db with a user. also to get token
+      //  const {
+      //    token,
+      //    user: { email: userEmail },
+      //  } = await createUserAndGetLoginRes({
+      //    password: oldPassword,
+      //  });
+      // WORKSHOP-HINT: use this code to validate some value
+      // expect(secondLoginRes.status).toBe(400);
+      // expect(secondLoginRes.body.status).toBe("fail");
+      // expect(secondLoginRes.body.message).toBe("Invalid email or password");
     });
   });
 });
