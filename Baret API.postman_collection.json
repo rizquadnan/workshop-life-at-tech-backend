@@ -1,0 +1,656 @@
+{
+	"info": {
+		"_postman_id": "287c3311-d3f5-49ce-857e-2c00ffa528f7",
+		"name": "Baret API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19373971"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Login Trainer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"makbul@gmail.com\",\r\n    \"password\": \"makbul123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/login/trainer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"login",
+										"trainer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"jd@gmail.com\",\r\n    \"password\": \"jiodarno\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/login/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"login",
+										"customer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register Trainer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Makbul Zanzoa\",\r\n    \"email\": \"makbul@gmail.com\",\r\n    \"password\": \"makbul123\",\r\n    \"passwordConfirm\": \"makbul123\",\r\n    \"whatsapp\": \"088416231731\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/register/trainer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"register",
+										"trainer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Register Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jio Darno\",\r\n    \"email\": \"jiodarno@gmail.com\",\r\n    \"password\": \"jiodarno\",\r\n    \"passwordConfirm\": \"jiodarno\",\r\n    \"whatsapp\": \"088881383512\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/register/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"register",
+										"customer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh Token Trainer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/refresh/trainer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"refresh",
+										"trainer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh Token Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/refresh/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"refresh",
+										"customer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Forgot Password Trainer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"rizquadnan@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/forgot_password/trainer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"forgot_password",
+										"trainer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Password Trainer",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"12345678\",\r\n    \"passwordConfirm\": \"12345678\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/reset_password/trainer/d0ca09d28f86df3e018e8f2f05bb4d401a054544cc28aa5736f3a480d9add1ad",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"reset_password",
+										"trainer",
+										"d0ca09d28f86df3e018e8f2f05bb4d401a054544cc28aa5736f3a480d9add1ad"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reset Password Customer",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"jiodarno\",\r\n    \"passwordConfirm\": \"jiodarno\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/reset_password/customer/67f606462abe0633a35fddb4a0f13da2d0d533b43dbf8d873ab55925d7eb2ae6",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"reset_password",
+										"customer",
+										"67f606462abe0633a35fddb4a0f13da2d0d533b43dbf8d873ab55925d7eb2ae6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Forgot Password Customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"jiodarno@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/forgot_password/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"forgot_password",
+										"customer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change Password",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"jiodarno\",\r\n    \"passwordConfirm\": \"jiodarno\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{authResource}}/change_password",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{authResource}}",
+										"change_password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "Get Me",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{userResource}}/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{userResource}}",
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Me",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jio Darno\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{userResource}}/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{userResource}}",
+										"me"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "customers",
+					"item": [
+						{
+							"name": "Get Customers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{customerResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{customerResource}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "contracts",
+					"item": [
+						{
+							"name": "Post Contracts",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"exerciseDurationDays\": 30,\r\n    \"customerId\": 1,\r\n    \"numberOfExercise\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{contractsResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{contractsResource}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Contracts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{contractsResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{contractsResource}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "exercise",
+					"item": [
+						{
+							"name": "Create Exercise",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contractId\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{exerciseResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{exerciseResource}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Exercise",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{exerciseResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{exerciseResource}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Exercise",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{exerciseResource}}/1",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{exerciseResource}}",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "trainers",
+					"item": [
+						{
+							"name": "Get Trainer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/{{apiV1}}/{{trainerResource}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"{{apiV1}}",
+										"{{trainerResource}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/{{apiV1}}/health_check",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{apiV1}}",
+						"health_check"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiV1",
+			"value": "api/v1"
+		},
+		{
+			"key": "authResource",
+			"value": "auth"
+		},
+		{
+			"key": "userResource",
+			"value": "users"
+		},
+		{
+			"key": "customerResource",
+			"value": "customers"
+		},
+		{
+			"key": "contractsResource",
+			"value": "contracts"
+		},
+		{
+			"key": "exerciseResource",
+			"value": "exercises"
+		},
+		{
+			"key": "trainerResource",
+			"value": "trainers"
+		}
+	]
+}
