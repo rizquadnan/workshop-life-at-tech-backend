@@ -78,14 +78,14 @@ Instructor Demo: create an integration testing for create exercise endpoint
 Participant Challenge: create an integration testing for change password endpoint
 
 Demo Start Git Branch:
-`git checkout 1-demo-testing-start`
+`git checkout 2-demo-testing-start`
 Demo Solution Git Branch:
-`git checkout 1-demo-testing-solution`
+`git checkout 2-demo-testing-solution`
 
 Exercise Start Git Branch:
-`git checkout 1-exercise-testing-start`
+`git checkout 2-exercise-testing-start`
 Exercise Solution Git Branch:
-`git checkout 1-exercise-testing-solution`
+`git checkout 2-exercise-testing-solution`
 
 ## Documentation
 
@@ -113,14 +113,3 @@ Participant Challenge: deploy change password endpoint changes
 Bug fixing is the act of writing code to fix a unexpected behaviour of existing code
 
 Instructor Demo: bug fix in create exercise endpoint
-Participant Challenge: bug fix in change password endpoint
-
-Demo Start Git Branch:
-`git checkout 1-demo-bug-fix-start`
-Demo Solution Git Branch:
-`git checkout 1-demo-bug-fix-solution`
-
-Exercise Start Git Branch:
-`git checkout 1-exercise-bug-fix-start`
-Exercise Solution Git Branch:
-`git checkout 1-exercise-bug-fix-solution`
