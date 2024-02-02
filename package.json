@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "./scripts/run-dev-server.sh",
     "dev:c": "npx prisma db push && ./node_modules/.bin/nodemon ./src/index.ts",
-    "docker:clear-db": "docker compose down -v"
+    "docker:clear-db": "docker compose down -v",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
