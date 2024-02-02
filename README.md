@@ -24,8 +24,8 @@ Understanding requirement is a crucial part of a life as a Software Engineer. Be
 
 Development is an act of translating requirements into code that can be used (once deployed) by humans and/or other services. Backend is more about the latter. Backend services9 the Frontend
 
-Instructor Demo: forgot password endpoint
-Participant Challenge: get contract endpoint
+Instructor Demo: create exercise endpoint
+Participant Challenge: change password endpoint
 
 Demo Start Git Branch:
 `git branch 1-demo-requirement-dev-start`
@@ -41,8 +41,8 @@ Exercise Solution Git Branch:
 
 Deployment is the act of making our code ready to be used by humans and/or other services
 
-Instructor Demo: deploy forgot password endpoint
-Participant Challenge: deploy get contract endpoint
+Instructor Demo: deploy create exercise endpoint
+Participant Challenge: deploy change password endpoint
 
 Demo Start Git Branch:
 `git branch 1-demo-deployment-start`
@@ -58,8 +58,8 @@ Exercise Solution Git Branch:
 
 Testing is the act of making sure our code works as expected
 
-Instructor Demo: create an integration testing for forgot password endpoint
-Participant Challenge: create an integration testing for get contract endpoint
+Instructor Demo: create an integration testing for create exercise endpoint
+Participant Challenge: create an integration testing for change password endpoint
 
 Demo Start Git Branch:
 `git branch 1-demo-testing-start`
@@ -75,14 +75,14 @@ Exercise Solution Git Branch:
 
 Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code
 
-Instructor Demo: add documentation for forgot password endpoint
+Instructor Demo: add documentation for create exercise endpoint
 
 ## Bug Fixing
 
 Bug fixing is the act of writing code to fix a unexpected behaviour of existing code
 
-Instructor Demo: bug fix in forgot password endpoint
-Participant Challenge: bug fix in get contract endpoint
+Instructor Demo: bug fix in create exercise endpoint
+Participant Challenge: bug fix in change password endpoint
 
 Demo Start Git Branch:
 `git branch 1-demo-bug-fix-start`
