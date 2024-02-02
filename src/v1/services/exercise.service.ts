@@ -2,9 +2,7 @@ import { Prisma } from "@prisma/client";
 import db from "../../db";
 import { GetExerciseForTrainerResponse } from "../schemas/exercise.schema";
 
-export const createExercise = async (exercise: Prisma.ExercisesCreateInput) => {
-  return await db.exercises.create({ data: exercise });
-};
+// WORKSHOP-HINT: add create exercise service here
 
 export const getExercisesForTrainer = async (args: {
   trainerId: number;

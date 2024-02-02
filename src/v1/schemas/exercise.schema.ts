@@ -1,13 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { TypeOf, number, object, string, default as z } from "zod";
 
-export const createExerciseSchema = object({
-  body: object({
-    contractId: number({ required_error: "Contract is required." }),
-  }),
-});
-
-export type CreateExerciseInput = TypeOf<typeof createExerciseSchema>["body"];
+// WORKSHOP-HINT: add create exercise schema here
 
 export const getExerciseSchema = object({
   query: object({

@@ -1,13 +1,11 @@
 import { Router } from "express";
 import { generateJson } from "../utils/genJson";
 import {
-  createExerciseHandler,
   getTrainerExercisesHandler,
   patchExerciseHandler,
 } from "../controllers/exercise.controller";
 import { validate } from "../middlewares/validate";
 import {
-  createExerciseSchema,
   getExerciseSchema,
   patchExerciseSchema,
 } from "../schemas/exercise.schema";
@@ -20,7 +18,7 @@ router.use(deserializeUser, requireUser);
 
 // used in:
 // - trainer app, train
-router.post("/", validate(createExerciseSchema), createExerciseHandler);
+// WORKSHOP-HINT: add post exercise route here
 
 // used in:
 // - trainer app, train

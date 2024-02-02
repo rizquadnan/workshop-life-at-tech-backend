@@ -5,9 +5,7 @@ export const createContract = async (contract: Prisma.ContractCreateInput) => {
   return await db.contract.create({ data: contract });
 };
 
-export const getContractById = async (contractId: number) => {
-  return await db.contract.findUnique({ where: { id: contractId } });
-};
+// WORKSHOP-HINT: add get contract by id service here
 
 export const getContractsByTrainerCustomerId = async (
   trainerId?: number,

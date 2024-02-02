@@ -71,19 +71,14 @@ model Contract {
   @@index([trainerId, customerId])
 }
 
-enum ExerciseStatus {
-  ACTIVE
-  PENDING
-  FINISHED
-}
-
+// WORKSHOP-HINT: add enum exercise status here
 model Exercises {
-  id             Int            @id @default(autoincrement())
-  createdAt      DateTime       @default(now())
-  updatedAt      DateTime       @updatedAt
-  startTime      DateTime
-  endTime        DateTime?
-  contractId     Int
-  contract       Contract       @relation(fields: [contractId], references: [id])
-  exerciseStatus ExerciseStatus
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  startTime  DateTime
+  endTime    DateTime?
+  contractId Int
+  contract   Contract  @relation(fields: [contractId], references: [id])
+  // WORKSHOP-HINT: add new column exercise status here
 }
