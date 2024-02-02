@@ -8,10 +8,8 @@ import {
   RegisterUserInput,
   AuthRouteParam,
   authResponseExcludedFields,
-  UserType,
   ForgotPasswordInput,
   ResetPasswordInput,
-  ChangePasswordInput,
 } from "../schemas/auth.schema";
 import {
   createTrainer,
@@ -353,42 +351,4 @@ export const resetPasswordHandler = async (
   }
 };
 
-export const changePasswordHandler = async (
-  req: Request<ChangePasswordInput["body"]>,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const userId = res.locals.user.id as number;
-    const userType = res.locals.userType as UserType;
-
-    const hashedPassword = await bcrypt.hash(req.body.password, 12);
-    // Change password data
-    const user = await (userType === "trainer"
-      ? updateTrainer(
-          {
-            id: userId,
-          },
-          {
-            password: hashedPassword,
-          }
-        )
-      : updateCustomer(
-          {
-            id: userId,
-          },
-          {
-            password: hashedPassword,
-          }
-        ));
-
-    return res.status(200).json(
-      generateJson({
-        status: "success",
-        data: omit(user, authResponseExcludedFields),
-      })
-    );
-  } catch (error) {
-    next(error);
-  }
-};
+// WORKSHOP-HINT: add change password handler here

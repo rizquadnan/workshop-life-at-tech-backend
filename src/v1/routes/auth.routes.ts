@@ -2,14 +2,12 @@ import { Router } from "express";
 import { generateJson } from "../utils/genJson";
 import { validate } from "../middlewares/validate";
 import {
-  changePasswordSchema,
   forgotPasswordSchema,
   loginUserSchema,
   registerUserSchema,
   resetPasswordSchema,
 } from "../schemas/auth.schema";
 import {
-  changePasswordHandler,
   forgotPasswordHandler,
   loginUserHandler,
   logoutUserHandler,
@@ -53,12 +51,6 @@ router.patch(
   resetPasswordHandler
 );
 
-router.patch(
-  "/change_password",
-  deserializeUser,
-  requireUser,
-  validate(changePasswordSchema),
-  changePasswordHandler
-);
+// WORKSHOP-HINT: add change password route here
 
 export default router;
