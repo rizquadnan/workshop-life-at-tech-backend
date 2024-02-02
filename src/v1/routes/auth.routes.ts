@@ -55,9 +55,9 @@ router.patch(
 
 router.patch(
   "/change_password",
-  validate(changePasswordSchema),
   deserializeUser,
   requireUser,
+  validate(changePasswordSchema),
   changePasswordHandler
 );
 

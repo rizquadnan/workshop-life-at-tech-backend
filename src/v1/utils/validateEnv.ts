@@ -3,6 +3,7 @@ import { cleanEnv, port, str } from "envalid";
 function validateEnv() {
   cleanEnv(process.env, {
     DATABASE_URL: str(),
+    TESTING_DATABASE_URL: str(),
     PORT: port(),
 
     POSTGRES_HOST: str(),

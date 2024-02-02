@@ -9,7 +9,7 @@
     "docker:clear-db": "docker compose down -v",
     "build": "rm -rf ./dist && tsc",
     "start": "NODE_ENV=production node ./dist/src/index.js",
-    "test": "./scripts/run-integration-test.sh",
+    "test": "NODE_ENV=testing ./scripts/run-integration-test.sh",
     "explore-db": "npx prisma studio"
   },
   "keywords": [],
