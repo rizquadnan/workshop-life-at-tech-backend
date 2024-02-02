@@ -12,7 +12,7 @@ import {
 import { findUniqueTrainerById } from "../services/auth.trainer.service";
 import dayjs from "dayjs";
 
-const generateContractTime = (exerciseDurationDays: number) => {
+export const generateContractTime = (exerciseDurationDays: number) => {
   const now = dayjs();
 
   return {

@@ -24,7 +24,10 @@ describe("/api/v1/auth/change_password", () => {
       const oldPassword = "rahasia123";
       const newPassword = "123rahasia";
 
-      const { token, userEmail } = await createUserAndGetLoginRes({
+      const {
+        token,
+        user: { email: userEmail },
+      } = await createUserAndGetLoginRes({
         password: oldPassword,
       });
 

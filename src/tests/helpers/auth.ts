@@ -26,6 +26,9 @@ export const createUserAndGetLoginRes = async (
 
   return {
     token: firstLoginRes.body.data.token,
-    userEmail: firstLoginRes.body.data.user.email,
+    user: {
+      email: firstLoginRes.body.data.user.email,
+      id: firstLoginRes.body.data.user.id,
+    },
   };
 };
