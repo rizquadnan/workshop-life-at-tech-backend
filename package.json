@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "./scripts/run-dev-server.sh",
-    "dev:container": "./node_modules/.bin/nodemon ./src/index.ts",
+    "dev:c": "npx prisma db push && ./node_modules/.bin/nodemon ./src/index.ts",
     "docker:clear-db": "docker compose down -v"
   },
   "keywords": [],
