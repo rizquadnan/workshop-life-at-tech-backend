@@ -21,7 +21,6 @@ const generateContractTime = (exerciseDurationDays: number) => {
   };
 };
 
-// TODO: role authorization
 export const postContractHandler = async (
   req: Request<{}, {}, PostContractInput>,
   res: Response,

@@ -18,8 +18,6 @@ router.get("/me", getMeHandler);
 // used in:
 // - trainer app, profile
 // - customer app, profile
-
-// TODO: add special endpoint for changing email
 router.patch("/me", validate(patchMeSchema), patchMeHandler);
 
 export default router;

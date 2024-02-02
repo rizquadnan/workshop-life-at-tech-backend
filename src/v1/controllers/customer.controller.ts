@@ -16,7 +16,6 @@ const filterExcludedCustomersFields = (customers: Customer[]): Customer[] => {
   );
 };
 
-// TODO: implement role based authorization
 export const getCustomersHandler = async (
   req: Request<{}, {}, {}>,
   res: Response,

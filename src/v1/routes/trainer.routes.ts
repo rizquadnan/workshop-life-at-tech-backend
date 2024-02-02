@@ -9,8 +9,6 @@ router.use(deserializeUser, requireUser);
 
 // used in:
 // - customer app, dashboard
-
-// TODO: role authorization
 router.get("/", getTrainerHandler);
 
 export default router;

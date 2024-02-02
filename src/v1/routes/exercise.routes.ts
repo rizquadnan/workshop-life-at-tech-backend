@@ -20,25 +20,17 @@ router.use(deserializeUser, requireUser);
 
 // used in:
 // - trainer app, train
-
-// TODO: role authorization
-// TODO: tenant enforcement
 router.post("/", validate(createExerciseSchema), createExerciseHandler);
 
 // used in:
 // - trainer app, train
 // - customer app, dashboard
 // - customer app, train
-
-// TODO: role authorization
-// TODO: filter by exercise status
 router.get("/", validate(getExerciseSchema), getTrainerExercisesHandler);
 
 // used in:
 // - trainer app, train
 // - customer app, train
-
-// - patch exercise to the proper direction per user
 router.patch(
   "/:exerciseId",
   validate(patchExerciseSchema),
