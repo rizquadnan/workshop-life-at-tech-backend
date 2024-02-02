@@ -15,12 +15,24 @@ The workshop consists of demo and exercises. The instructor will demonstrate a c
 The concepts are the hard skills most used by a Software Engineer during day-to-day job. Which are:
 
 1. Understanding requirement + development
-2. Deployment
-3. Testing
-4. Documentation
-5. Bug Fixing
+2. Testing
+3. Documentation
+4. Bug Fixing
+5. Deployment
 
 Enough reading, let's get our hands dirty!
+
+## Preparation
+
+Please follow this step to prepare the coding environment for the workshop:
+
+1. In Sidebar click the Thunder Client button
+2. Click Env in the appeared Thunder Client menu
+3. Click the filter button
+4. Import env variables, Development.postman_environment.json
+5. Click Collections in the Thunder Client menu
+6. Click the filter button
+7. Import collection, Baret API.postman_collection.json
 
 ## Understanding Requirement + Development
 
@@ -28,35 +40,35 @@ Understanding requirement is a crucial part of a life as a Software Engineer. Be
 
 Development is an act of translating requirements into code that can be used (once deployed) by humans and/or other services. Backend is more about the latter. Backend services9 the Frontend
 
+**Create Exercise Requirement:**
+
+- this is a protected route. only user that is logged in can use it
+- can only create exercise on existing contract
+- set exercise status of the created exercise to ACTIVE
+- set the start time of the created exercise to the current time
+- return the created exercise as success response
+
+**Change Password Requirement:**
+
+- this is a protected route. only user that is logged in can use it
+- validate password properly
+- the new password must be encrypted before saving it to the database
+- return user information as success response
+- make sure no sensitive information in the success response
+
 Instructor Demo: create exercise endpoint
 Participant Challenge: change password endpoint
 
 Demo Start Git Branch:
-`git branch 1-demo-requirement-dev-start`
+`git checkout 1-demo-requirement-dev-start`
 Demo Solution Git Branch:
-`git branch 1-demo-requirement-dev-solution`
+`git checkout 1-demo-requirement-dev-solution`
 
 Exercise Start Git Branch:
-`git branch 1-exercise-requirement-dev-start`
+`git checkout 1-exercise-requirement-dev-start`
+
 Exercise Solution Git Branch:
-`git branch 1-exercise-requirement-dev-solution`
-
-## Deployment
-
-Deployment is the act of making our code ready to be used by humans and/or other services
-
-Instructor Demo: deploy create exercise endpoint
-Participant Challenge: deploy change password endpoint
-
-Demo Start Git Branch:
-`git branch 1-demo-deployment-start`
-Demo Solution Git Branch:
-`git branch 1-demo-deployment-solution`
-
-Exercise Start Git Branch:
-`git branch 1-exercise-deployment-start`
-Exercise Solution Git Branch:
-`git branch 1-exercise-deployment-solution`
+`git checkout 1-exercise-requirement-dev-solution`
 
 ## Testing
 
@@ -66,20 +78,27 @@ Instructor Demo: create an integration testing for create exercise endpoint
 Participant Challenge: create an integration testing for change password endpoint
 
 Demo Start Git Branch:
-`git branch 1-demo-testing-start`
+`git checkout 1-demo-testing-start`
 Demo Solution Git Branch:
-`git branch 1-demo-testing-solution`
+`git checkout 1-demo-testing-solution`
 
 Exercise Start Git Branch:
-`git branch 1-exercise-testing-start`
+`git checkout 1-exercise-testing-start`
 Exercise Solution Git Branch:
-`git branch 1-exercise-testing-solution`
+`git checkout 1-exercise-testing-solution`
 
 ## Documentation
 
 Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code
 
 Instructor Demo: add documentation for create exercise endpoint
+
+## Deployment
+
+Deployment is the act of making our code ready to be used by humans and/or other services
+
+Instructor Demo: deploy create exercise endpoint
+Participant Challenge: deploy change password endpoint
 
 ## Bug Fixing
 
@@ -89,11 +108,11 @@ Instructor Demo: bug fix in create exercise endpoint
 Participant Challenge: bug fix in change password endpoint
 
 Demo Start Git Branch:
-`git branch 1-demo-bug-fix-start`
+`git checkout 1-demo-bug-fix-start`
 Demo Solution Git Branch:
-`git branch 1-demo-bug-fix-solution`
+`git checkout 1-demo-bug-fix-solution`
 
 Exercise Start Git Branch:
-`git branch 1-exercise-bug-fix-start`
+`git checkout 1-exercise-bug-fix-start`
 Exercise Solution Git Branch:
-`git branch 1-exercise-bug-fix-solution`
+`git checkout 1-exercise-bug-fix-solution`
