@@ -4,7 +4,7 @@ This holds the source codes and configurations needed to run the Baret PT API. T
 
 # The App
 
-Please take a look at the docs folder in this repo
+Please take a look at the docs folder in this repo for explainations of the app
 
 # The Workshop
 
@@ -27,10 +27,10 @@ Enough reading, let's get our hands dirty!
 Please follow this step to prepare the coding environment for the workshop:
 
 1. In Sidebar click the Thunder Client button
-2. Click Env in the appeared Thunder Client menu
+2. Click `Env` in the appeared Thunder Client menu
 3. Click the filter button
 4. Import env variables, Development.postman_environment.json
-5. Click Collections in the Thunder Client menu
+5. Click `Collections` in the Thunder Client menu
 6. Click the filter button
 7. Import collection, Baret API.postman_collection.json
 
@@ -91,7 +91,7 @@ Exercise Solution Git Branch:
 
 Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code
 
-Instructor Demo: add documentation for create exercise endpoint
+Instructor Demo: show complete documentation of Baret PT API
 
 ## Deployment
 
