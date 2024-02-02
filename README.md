@@ -97,8 +97,16 @@ Instructor Demo: show complete documentation of Baret PT API
 
 Deployment is the act of making our code ready to be used by humans and/or other services
 
-Instructor Demo: deploy create exercise endpoint
-Participant Challenge: deploy change password endpoint
+**Steps to deploy**
+Deployment can be done in any platform that supports node.js runtime or supports docker deployment. to simplify things, deployment is going to be done in render.com:
+
+1. Register to render.com
+2. Create node.js service
+3. Create postgres database service
+4. Change DATABASE_URL env on node.js service
+
+Instructor Demo: deploy create exercise endpoint changes
+Participant Challenge: deploy change password endpoint changes
 
 ## Bug Fixing
 
