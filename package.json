@@ -8,7 +8,7 @@
     "dev:c": "npx prisma db push && ./node_modules/.bin/nodemon ./src/index.ts",
     "docker:clear-db": "docker compose down -v",
     "build": "tsc",
-    "start": "node ./dist/src/index.js"
+    "start": "NODE_ENV=production node ./dist/src/index.js"
   },
   "keywords": [],
   "author": "",

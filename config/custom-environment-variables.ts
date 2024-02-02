@@ -1,7 +1,6 @@
 export default {
   databaseUrl: "DATABASE_URL",
   port: "PORT",
-  nodeEnv: "NODE_ENV",
 
   frontendUrl: "FRONTEND_URL",
 

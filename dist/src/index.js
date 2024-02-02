@@ -49,6 +49,8 @@ process.on("uncaughtException", (err) => {
 process.on("unhandledRejection", (err) => {
     console.log("[Node Global Error Handler] unhandledRejection: ", err);
 });
+const nodeEnv = config_1.default.get("nodeEnv");
+console.log("nodeEnv", nodeEnv);
 const port = config_1.default.get("port");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
