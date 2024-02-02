@@ -2,6 +2,10 @@
 
 This holds the source codes and configurations needed to run the Baret PT API. The API is a case study for the BelajarBerbagi - Sneak Peek Life At Tech Company Workshop. The code here is managed by git. The workshop utilizes git branches to load the appropriate state of the codebase to facilitate the demo and exercise for a given concept.
 
+# The App
+
+Please take a look at the docs folder in this repo
+
 # The Workshop
 
 The main purpose of the workshop is to make the participants understand the day-to-day job of a Software Engineer at a Tech Company. I believe in the power of learning by doing. We learn so much more by actually just practicing rather by doing something else. You can think this workshop as a short Software Engineer internship at PT Muhammad Adnan R :D
