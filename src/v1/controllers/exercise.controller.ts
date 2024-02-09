@@ -13,10 +13,8 @@ import {
 } from "../services/exercise.service";
 import {
   getContractById,
-  getContractsByTrainerCustomerId,
 } from "../services/contract.service";
 import { UserType } from "../schemas/auth.schema";
-import { Prisma } from "@prisma/client";
 
 export const createExerciseHandler = async (
   req: Request<{}, {}, CreateExerciseInput>,
@@ -60,8 +58,8 @@ export const getTrainerExercisesHandler = async (
 
     const exercises = await (userType === "trainer"
       ? getExercisesForTrainer({
-          trainerId: user.id as number,
-        })
+        trainerId: user.id as number,
+      })
       : getExercisesForCustomer({ customerId: user.id as number }));
 
     return res.status(200).json(

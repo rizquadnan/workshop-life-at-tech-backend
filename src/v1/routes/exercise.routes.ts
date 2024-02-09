@@ -4,7 +4,7 @@ import {
   createExerciseHandler,
   getTrainerExercisesHandler,
   patchExerciseHandler,
-} from "./exercise.controller";
+} from "../controllers/exercise.controller";
 import { validate } from "../middlewares/validate";
 import {
   createExerciseSchema,
