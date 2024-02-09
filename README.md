@@ -1,6 +1,6 @@
 # What is this repo ?
 
-This holds the source codes and configurations needed to run the Baret PT API. The API is a case study for the BelajarBerbagi - Sneak Peek Life At Tech Company Workshop. The code here is managed by git. The workshop utilizes git branches to load the appropriate state of the codebase to facilitate the demo and exercise for a given concept.
+This holds the source codes and configurations needed to run the Baret PT API. The API is a case study for the Belajar Berbagi - Sneak Peek Life At Tech Company Workshop. The code here is managed by git. The workshop utilizes git branches to load the appropriate state of the codebase to facilitate the demo and exercise for a given concept.
 
 # The App
 
@@ -8,7 +8,7 @@ Please take a look at the docs folder in this repo for explainations of the app
 
 # The Workshop
 
-The main purpose of the workshop is to make the participants understand the day-to-day job of a Software Engineer at a Tech Company. I believe in the power of learning by doing. We learn so much more by actually just practicing rather by doing something else. You can think this workshop as a short Software Engineer internship at PT Muhammad Adnan R :D
+The main purpose of the workshop is to make the participants understand the day-to-day job of a Software Engineer at a Tech Company. I believe in the power of learning by doing. We learn so much more by actually just practicing rather by doing something else. You can think this workshop as a short Software Engineer internship at my company AdnanCoWorks :D
 
 The workshop consists of demo and exercises. The instructor will demonstrate a concept. Once the participants understood it. The participants are challenged to complete an exercise related to the concept.
 
@@ -38,7 +38,7 @@ Please follow this step to prepare the coding environment for the workshop:
 
 Understanding requirement is a crucial part of a life as a Software Engineer. Because all software starts from defining the requirement of it. Misunderstanding in this step will lead in many errors along the next steps of developing a software
 
-Development is an act of translating requirements into code that can be used (once deployed) by humans and/or other services. Backend is more about the latter. Backend services9 the Frontend
+Development is an act of translating requirements into code that can be used (once deployed) by humans and/or other services. Backend is more about the latter. Backend services the Frontend
 
 **Create Exercise Requirement:**
 
@@ -89,7 +89,9 @@ Exercise Solution Git Branch:
 
 ## Documentation
 
-Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code
+Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code. You can see the documentation by importing to Postman:
+1. Baret API.postman_collection.json
+2. Development.postman_environment.json
 
 Instructor Demo: show complete documentation of Baret PT API
 

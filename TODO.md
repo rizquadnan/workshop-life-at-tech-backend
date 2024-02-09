@@ -1,4 +1,4 @@
-- create all demo branches
-- create all exercise branches
-- create all exercise tips
-- tune slides
+- add comments for workshop exercises
+- fix testing
+- delete unneeded code
+- re read readme
