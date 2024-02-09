@@ -70,6 +70,8 @@ Exercise Start Git Branch:
 Exercise Solution Git Branch:
 `git checkout 1-exercise-requirement-dev-solution`
 
+PS: Search the code repository for WORKSHOP-HINT: to help you out during the exercise
+
 ## Testing
 
 Testing is the act of making sure our code works as expected
@@ -86,6 +88,8 @@ Exercise Start Git Branch:
 `git checkout 2-exercise-testing-start`
 Exercise Solution Git Branch:
 `git checkout 2-exercise-testing-solution`
+
+PS: Search the code repository for WORKSHOP-HINT: to help you out during the exercise
 
 ## Documentation
 
