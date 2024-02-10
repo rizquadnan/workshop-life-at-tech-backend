@@ -22,7 +22,9 @@ describe("/api/v1/exercise", () => {
     });
 
     it("should create exercise", async () => {
-      const { token, user: trainer } = await createUserAndGetLoginRes({});
+      const { token, user: trainer } = await createUserAndGetLoginRes({
+        email: "for_create_exercise@gmail.com",
+      });
 
       const customer = await db.customer.create({
         data: {

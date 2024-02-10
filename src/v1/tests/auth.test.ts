@@ -28,6 +28,7 @@ describe("/api/v1/auth/change_password", () => {
         token,
         user: { email: userEmail },
       } = await createUserAndGetLoginRes({
+        email: "for_auth@gmail.com",
         password: oldPassword,
       });
 

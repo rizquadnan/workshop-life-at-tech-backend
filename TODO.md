@@ -1,4 +1,0 @@
-- add comments for workshop exercises
-- fix testing
-- delete unneeded code
-- re read readme

@@ -10,7 +10,7 @@ export const createUserAndGetLoginRes = async (
   const user = await db.trainer.create({
     data: {
       name: "Makbul Zanzoa",
-      email: "makbul@gmail.com",
+      email: trainer.email ?? "makbul@gmail.com",
       password: await bcrypt.hash(trainer.password ?? "rahasia123", 12),
       whatsapp: "088416231731",
       rStatus: "ACTIVE",

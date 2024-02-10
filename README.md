@@ -24,6 +24,17 @@ Enough reading, let's get our hands dirty!
 
 ## Preparation
 
+### Setup repo
+
+To setup the repo for development please do:
+
+1. In terminal, run `yarn install`
+2. In terminal, run `yarn dev`
+
+If everything works, the development server should not throw any error
+
+### API Documentation
+
 Please follow this step to prepare the coding environment for the workshop:
 
 1. In Sidebar click the Thunder Client button
@@ -94,6 +105,7 @@ PS: Search the code repository for WORKSHOP-HINT: to help you out during the exe
 ## Documentation
 
 Documentation is the act of having a form of media that explains the stuff needed for other Software Engineers to be able understand fully a piece of code. You can see the documentation by importing to Postman:
+
 1. Baret API.postman_collection.json
 2. Development.postman_environment.json
 
